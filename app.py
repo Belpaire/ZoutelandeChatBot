@@ -25,9 +25,11 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
-                if message['message'].get('text'):
-                    response_sent_text = get_message()
+                if message['message'].get('text')== "what's the best song":
+                    response_sent_text ="Zoutelande is a great song"
                     send_message(recipient_id, response_sent_text)
+                elif  message['message'].get('text'):
+                    send_message(recipient_id, get_message())
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -45,7 +47,7 @@ def verify_fb_token(token_sent):
  
 #chooses a random message to send to the user
 def get_message():
-    sample_responses = ["You are stunning!", "We're proud of you.", "Keep on being you!", "We're greatful to know you :)"]
+    sample_responses = ["Zoutelande is a great song", " Yeah I love fitness" , "Yeah, I'm an influencer"]
     # return selected item to the user
     return random.choice(sample_responses)
  

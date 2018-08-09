@@ -7,8 +7,7 @@ app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN =  os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
- 
-#We will receive messages that Facebook sends our bot at this endpoint 
+#We will receive messages that Facebook sends our bot at this endpoint
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
     if request.method == 'GET':
@@ -57,4 +56,5 @@ def send_message(recipient_id, response):
     return "success"
  
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
